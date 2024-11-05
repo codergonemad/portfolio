@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- Window Frame -->
+  <rect x="2" y="2" width="20" height="20" rx="3" fill="#2D3748" />
+  
+  <!-- Window Header -->
+  <rect x="2" y="2" width="20" height="4" rx="3" fill="#4A5568" />
+  
+  <!-- Window Controls -->
+  <circle cx="5" cy="4" r="0.8" fill="#FC8181"/>
+  <circle cx="8" cy="4" r="0.8" fill="#F6E05E"/>
+  <circle cx="11" cy="4" r="0.8" fill="#68D391"/>
+  
+  <!-- Code Lines -->
+  <path d="M6 9L10 9" stroke="#81E6D9" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M6 12L14 12" stroke="#B794F4" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M6 15L12 15" stroke="#F687B3" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Code Brackets -->
+  <path d="M14 8L16 11L14 14" stroke="#4FD1C5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <path d="M18 8L16 11L18 14" stroke="#4FD1C5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+</svg>
