@@ -3,6 +3,9 @@ import { Linkedin, Mail, ArrowUp, ChevronDown, Download } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 import SkillsSection from './SkillsSection';
 import EducationExperienceTimeline from './EducationExperienceTimeline';
+import ProjectsSection from './ProjectsSection';
+import CertificationsSection from './CertificationsSection';
+import hackerImage from '../media/hacker.avif';
 
 // In your main component's render method
 
@@ -14,9 +17,11 @@ const PortfolioWebsite = () => {
   const sections = [
     { id: 'home', label: 'Intro' },
     { id: 'about', label: 'About' },
+    { id: 'whatido', label: 'What I Do' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
-    { id: 'work', label: 'Portfolio' },
+    { id: 'certifications', label: 'Certifications' },
+    { id: 'work', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -71,19 +76,23 @@ const PortfolioWebsite = () => {
           }
           html {
             scroll-behavior: smooth;
+            scroll-snap-type: y proximity;
+          }
+          .snap-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: normal;
           }
         `}</style>
   
-  <header className="fixed w-full bg-[#0a192f] bg-opacity-90 z-10">
-        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold text-[#64ffda]">SS</a>
-          <ul className="flex space-x-6">
+  <header className="fixed w-full bg-transparent z-20">
+        <nav className="container mx-auto px-6 py-6 flex justify-end items-center">
+          <ul className="flex space-x-8">
             {sections.map((section) => (
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
-                  className={`hover:text-[#64ffda] transition-colors duration-300 ${
-                    activeSection === section.id ? 'text-[#64ffda]' : ''
+                  className={`text-sm hover:text-[#64ffda] transition-colors duration-300 ${
+                    activeSection === section.id ? 'text-[#64ffda]' : 'text-[#ccd6f6]'
                   }`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -124,100 +133,247 @@ const PortfolioWebsite = () => {
       </nav>
   
         <main>
-        <section id="home" className="h-screen flex flex-col items-center justify-center relative">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold mb-4">Saket Singh</h1>
-            <p className="text-xl mb-8">Associate Software Engineer</p>
-            <a href="#contact" className="bg-transparent border border-[#64ffda] text-[#64ffda] px-6 py-3 rounded hover:bg-[#64ffda] hover:text-[#0a192f] transition-colors duration-300">Get In Touch</a>
+        <section id="home" className="snap-section min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+          {/* Background Image */}
+          <div 
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          >
+            {/* Dark overlay with gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0a192f]/70 via-[#0a192f]/60 to-[#0a192f]" />
           </div>
-          <div className="scroll-down-wrapper absolute bottom-8 left-1/2 transform -translate-x-1/2">
+          
+          {/* Content */}
+          <div className="relative z-10 text-center">
+            <h1 className="text-6xl md:text-7xl font-bold mb-6 text-white">Saket Singh</h1>
+            <p className="text-xl md:text-2xl text-[#a8b2d1]">Full Stack GenAI Developer</p>
+          </div>
+          
+          {/* Learn More */}
+          <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10">
             <a
               href="#about"
               title="About section"
-              className="scroll-down flex flex-col items-center text-[#64ffda] hover:text-[#4fd1b5] transition-colors duration-300"
+              className="flex flex-col items-center text-[#64ffda] hover:text-[#4fd1b5] transition-colors duration-300 cursor-pointer"
               onClick={(e) => {
                 e.preventDefault();
                 scrollToSection('about');
               }}
             >
-              <span className="scroll-down-text mb-2">Learn More</span>
-              <ChevronDown size={24} className="animate-bounce" />
+              <span className="text-sm mb-2">Learn More</span>
+              <ChevronDown size={20} className="animate-bounce" />
             </a>
           </div>
         </section>
   
-          <section id="about" className="py-20">
-            <div className="container mx-auto px-6">
-              <h2 className="text-3xl font-bold mb-8 text-[#64ffda]">About Me</h2>
-              <div className="flex flex-col md:flex-row items-center">
-                <div className="md:w-1/2 mb-8 md:mb-0">
-                  <img src="/api/placeholder/300/300" alt="Saket Singh" className="rounded-full w-64 h-64 object-cover mx-auto" />
-                </div>
-                <div className="md:w-1/2">
-                  <p className="mb-4">I'm an Associate Software Engineer with experience in developing versatile chatbots, script execution systems, and dynamic sales dashboards. My expertise spans across various technologies including Python, Java, JavaScript, and multiple frontend and backend frameworks.</p>
-                  <p>I'm passionate about leveraging machine learning and NLP capabilities to enhance project intelligence and create efficient, scalable solutions.</p>
-                </div>
-              </div>
+          <section id="about" className="snap-section min-h-screen py-24 flex items-center relative overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+              }}
+            >
+              <div className="absolute inset-0 bg-[#0a192f]/90" />
             </div>
-          </section>
-          <section id="skills" className="py-20">
-          <SkillsSection />
-          </section>
-          <section id="experience" className="py-20 bg-[#112240]">
-          <EducationExperienceTimeline />
-      </section>
-      <a
-      href=''
-      target="_blank"
-      rel="noopener noreferrer"
-      className="block w-full min-h-[100px] bg-[#00909c] text-[#f2f2f2] font-bold uppercase text-center relative overflow-hidden transition-colors duration-500 hover:bg-[#007a84] group"
-    >
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="transition-all duration-300 group-hover:opacity-0 group-hover:scale-95">
-          View my full résumé
-        </span>
-        <Download 
-          size={24} 
-          className="absolute transform scale-150 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100"
-        />
-      </div>
-    </a>
-          <section id="work" className="py-20">
-            <div className="container mx-auto px-6">
-              <h2 className="text-3xl font-bold mb-8 text-[#64ffda]">Featured Projects</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {['AskDA: Chatbot', 'CHAOS: Script Execution System', 'Sales Dashboard'].map((project) => (
-                  <div key={project} className="bg-[#112240] p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 group">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-[#64ffda] transition-colors duration-300">{project}</h3>
-                    <p className="text-[#8892b0] mb-4">A brief description of the project and its key features.</p>
-                    <div className="flex space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <a href="#" className="text-[#64ffda] hover:underline">GitHub</a>
-                      <a href="#" className="text-[#64ffda] hover:underline">Live Demo</a>
+            <div className="relative z-10 container mx-auto px-6">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">About Me</h2>
+              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-12 text-lg">Get to know me better</p>
+              <div className="flex flex-col md:flex-row items-center max-w-5xl mx-auto">
+                <div className="md:w-1/3 mb-8 md:mb-0">
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
+                    <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-[#64ffda]/20 to-[#0a192f] p-1 mx-auto overflow-hidden">
+                      <img src={hackerImage} alt="Developer" className="rounded-2xl w-full h-full object-cover" />
                     </div>
                   </div>
-                ))}
+                </div>
+                <div className="md:w-2/3 md:pl-12">
+                  <p className="mb-4 text-[#b4bfd4] leading-relaxed text-base md:text-lg">I'm a Full Stack GenAI Engineer with 2+ years of experience designing and deploying production-grade AI systems, including RAG pipelines, AI agents, and intelligent automation platforms. My expertise spans across various technologies including Python, Java, JavaScript, and multiple frontend and backend frameworks.</p>
+                  <p className="text-[#b4bfd4] leading-relaxed text-base md:text-lg">I'm passionate about leveraging LangChain, LangGraph, Azure OpenAI, and cloud-native Linux environments to deliver scalable enterprise AI solutions.</p>
+                </div>
               </div>
             </div>
           </section>
+
+          {/* What I Do Section */}
+          <section id="whatido" className="snap-section min-h-screen py-24 flex items-center relative overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+              }}
+            >
+              <div className="absolute inset-0 bg-[#0a192f]/90" />
+            </div>
+            <div className="relative z-10 container mx-auto px-6">
+              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">What I Do</h2>
+              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-12 text-lg">
+                I specialize in building intelligent systems and full-stack applications that solve real-world problems.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                {/* AI/ML Card */}
+                <div className="group relative overflow-hidden bg-[#112240] rounded-2xl border border-[#1d3a5f] hover:border-[#64ffda]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#64ffda]/10">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="p-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#64ffda]/20 to-[#64ffda]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">🤖</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#64ffda] transition-colors duration-300">AI/ML Development</h3>
+                    <p className="text-[#8892b0] leading-relaxed mb-4">Building intelligent chatbots, RAG pipelines, and AI agents using cutting-edge technologies.</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">LangChain</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">LangGraph</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">Azure OpenAI</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Full Stack Card */}
+                <div className="group relative overflow-hidden bg-[#112240] rounded-2xl border border-[#1d3a5f] hover:border-[#64ffda]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#64ffda]/10">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="p-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#64ffda]/20 to-[#64ffda]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">💻</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#64ffda] transition-colors duration-300">Full Stack Development</h3>
+                    <p className="text-[#8892b0] leading-relaxed mb-4">Creating responsive, scalable web applications from frontend to backend.</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">React</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">Next.js</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">FastAPI</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Cloud Card */}
+                <div className="group relative overflow-hidden bg-[#112240] rounded-2xl border border-[#1d3a5f] hover:border-[#64ffda]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#64ffda]/10">
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  <div className="p-8">
+                    <div className="w-16 h-16 bg-gradient-to-br from-[#64ffda]/20 to-[#64ffda]/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-3xl">☁️</span>
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#64ffda] transition-colors duration-300">Cloud Architecture</h3>
+                    <p className="text-[#8892b0] leading-relaxed mb-4">Designing and deploying scalable, secure cloud infrastructure solutions.</p>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">AWS</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">Docker</span>
+                      <span className="px-2 py-1 text-xs bg-[#0a192f] text-[#64ffda] rounded">Kubernetes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="skills" className="snap-section min-h-screen py-24 bg-[#0a192f] flex items-center">
+          <SkillsSection />
+          </section>
+          <section id="experience" className="snap-section">
+          <EducationExperienceTimeline />
+      </section>
+      
+      {/* Resume CTA */}
+      <div className="bg-[#0a192f] py-12">
+        <div className="container mx-auto px-6 text-center">
+          <a
+            href="https://drive.google.com/file/d/1HYTiP2ilGiulB7IB9Nu-1cxHvOdcgYB4/view?usp=drive_link"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative inline-flex items-center justify-center bg-[#64ffda] w-48 py-3 rounded-lg group hover:bg-[#64ffda]/90 transition-all duration-300 overflow-hidden"
+          >
+            <span className="text-[#0a192f] font-semibold text-sm uppercase tracking-wider group-hover:opacity-0 transition-opacity duration-300">
+              View my full résumé
+            </span>
+            <Download size={24} className="absolute text-[#0a192f] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </a>
+        </div>
+      </div>
+          <section id="work" className="snap-section">
+            <ProjectsSection />
+          </section>
+
+          <section id="certifications" className="snap-section">
+            <CertificationsSection />
+          </section>
   
-          <section id="contact" className="py-20 bg-[#112240]">
-            <div className="container mx-auto px-6 text-center">
-              <h2 className="text-3xl font-bold mb-8 text-[#64ffda]">Get In Touch</h2>
-              <p className="mb-8 max-w-md mx-auto">I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
-              <a href="mailto:sakets542@gmail.com" className="bg-transparent border border-[#64ffda] text-[#64ffda] px-6 py-3 rounded hover:bg-[#64ffda] hover:text-[#0a192f] transition-colors duration-300">Say Hello</a>
+          <section id="contact" className="snap-section min-h-screen py-24 flex items-center relative overflow-hidden">
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 z-0"
+              style={{
+                backgroundImage: `url('https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundAttachment: 'fixed',
+              }}
+            >
+              <div className="absolute inset-0 bg-[#0a192f]/90" />
+            </div>
+            <div className="relative z-10 container mx-auto px-6">
+              <div className="max-w-3xl mx-auto text-center">
+                <p className="text-[#64ffda] font-mono mb-4">What's Next?</p>
+                <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">Get In Touch</h2>
+                <p className="text-[#8892b0] mb-12 text-lg leading-relaxed">
+                  I'm currently open to new opportunities and exciting projects. Whether you want to discuss a potential collaboration, have a question, or just want to say hello — my inbox is always open!
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                  <a 
+                    href="mailto:sakets542@gmail.com" 
+                    className="group inline-flex items-center gap-3 bg-transparent border-2 border-[#64ffda] text-[#64ffda] px-8 py-4 rounded-lg font-semibold hover:bg-[#64ffda]/10 transition-all duration-300"
+                  >
+                    <Mail size={20} className="group-hover:animate-bounce" />
+                    Say Hello
+                  </a>
+                  <a 
+                    href="tel:+918303451036" 
+                    className="group inline-flex items-center gap-3 text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300"
+                  >
+                    <span className="text-lg">📞</span>
+                    +91 8303451036
+                  </a>
+                </div>
+
+                <div className="flex justify-center gap-6">
+                  <a 
+                    href="https://github.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <FaGithub size={22} />
+                  </a>
+                  <a 
+                    href="https://linkedin.com/in/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <Linkedin size={22} />
+                  </a>
+                  <a 
+                    href="mailto:sakets542@gmail.com"
+                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                  >
+                    <Mail size={22} />
+                  </a>
+                </div>
+              </div>
             </div>
           </section>
         </main>
-  
-        <footer className="bg-[#0a192f] py-6 border-t border-[#1d2d50]">
-        <div className="container mx-auto px-6 flex justify-center items-center">
-          <div className="flex space-x-6">
-            <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300"><FaGithub size={24} /></a>
-            <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300"><Linkedin size={24} /></a>
-            <a href="#" className="text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300"><Mail size={24} /></a>
-          </div>
-        </div>
-      </footer>
 
       {showGoToTop && (
         <button
