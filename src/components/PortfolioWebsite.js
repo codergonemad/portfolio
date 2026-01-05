@@ -389,7 +389,7 @@ const PortfolioWebsite = () => {
 
                 <div className="flex justify-center gap-4 md:gap-6">
                   <a 
-                    href="https://github.com/" 
+                    href="https://github.com/codergonemad" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
@@ -397,7 +397,7 @@ const PortfolioWebsite = () => {
                     <FaGithub size={20} />
                   </a>
                   <a 
-                    href="https://linkedin.com/in/" 
+                    href="https://www.linkedin.com/in/saket-singh-0300761a0/" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
@@ -419,7 +419,7 @@ const PortfolioWebsite = () => {
       {showGoToTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-[#64ffda] text-[#0a192f] p-3 rounded-full shadow-lg hover:bg-[#4fd1b5] transition-colors duration-300"
+          className="fixed bottom-8 right-8 bg-[#64ffda] text-[#0a192f] p-3 rounded-full shadow-lg hover:bg-[#4fd1b5] transition-colors duration-300 z-50"
           aria-label="Go to top"
         >
           <ArrowUp size={24} />
