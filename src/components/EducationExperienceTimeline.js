@@ -73,20 +73,20 @@ const TimelineCard = ({ item, position, index }) => {
     >
       <div className="
         backdrop-blur-md bg-[#112240]/80 border border-[#1d3a5f]
-        rounded-xl p-6 shadow-xl
+        rounded-xl p-4 md:p-6 shadow-xl
         hover:bg-[#112240] transition-all duration-300
         hover:border-[#64ffda]/30
       ">
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2">
           {item.title}
         </h3>
-        <p className="text-[#64ffda] text-sm mb-3">
+        <p className="text-[#64ffda] text-xs sm:text-sm mb-2 md:mb-3">
           {item.startDate} - {item.endDate}
         </p>
-        <h4 className="text-[#64ffda] font-semibold mb-3">
+        <h4 className="text-[#64ffda] font-semibold mb-2 md:mb-3 text-sm md:text-base">
           {item.role}
         </h4>
-        <p className="text-[#b4bfd4] text-sm leading-relaxed">
+        <p className="text-[#b4bfd4] text-xs sm:text-sm leading-relaxed">
           {item.description}
         </p>
       </div>
@@ -114,19 +114,19 @@ const EducationExperienceTimeline = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Experience & Education
           </h2>
-          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-lg">
+          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-base md:text-lg px-2">
             My professional journey has been shaped by valuable experiences in 
             software engineering and a strong educational foundation.
           </p>

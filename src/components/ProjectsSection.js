@@ -56,7 +56,7 @@ const ProjectPlaceholder = ({ isReversed }) => (
 );
 
 const TechTag = ({ tech }) => (
-  <span className="px-4 py-1.5 text-sm border border-[#64ffda] text-[#64ffda] rounded-md hover:bg-[#64ffda]/10 transition-colors duration-300">
+  <span className="px-2 sm:px-4 py-1 sm:py-1.5 text-xs sm:text-sm border border-[#64ffda] text-[#64ffda] rounded-md hover:bg-[#64ffda]/10 transition-colors duration-300">
     {tech}
   </span>
 );
@@ -70,9 +70,9 @@ const ProjectCard = ({ project, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="mb-24"
+      className="mb-12 md:mb-24"
     >
-      <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-8 items-center`}>
+      <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-4 md:gap-8 items-center`}>
         {/* Project Image */}
         <motion.div 
           className="w-full lg:w-1/2"
@@ -90,20 +90,20 @@ const ProjectCard = ({ project, index }) => {
         </motion.div>
 
         {/* Project Content */}
-        <div className={`w-full lg:w-1/2 ${isReversed ? 'lg:text-left' : 'lg:text-left'}`}>
-          <h3 className="text-2xl md:text-3xl font-bold text-[#64ffda] mb-4">
+        <div className={`w-full lg:w-1/2 ${isReversed ? 'lg:text-left' : 'lg:text-left'} text-center lg:text-left`}>
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#64ffda] mb-3 md:mb-4">
             {project.title}
           </h3>
           
           {/* Description Card */}
-          <div className="bg-[#112240] border border-[#1d3a5f] rounded-lg p-6 mb-6 shadow-xl">
-            <p className="text-[#b4bfd4] leading-relaxed text-base">
+          <div className="bg-[#112240] border border-[#1d3a5f] rounded-lg p-4 md:p-6 mb-4 md:mb-6 shadow-xl">
+            <p className="text-[#b4bfd4] leading-relaxed text-sm md:text-base text-left">
               {project.description}
             </p>
           </div>
 
           {/* Tech Stack */}
-          <div className="flex flex-wrap gap-3 mb-6">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-4 md:mb-6 justify-center lg:justify-start">
             {project.technologies.map((tech, techIndex) => (
               <TechTag key={techIndex} tech={tech} />
             ))}
@@ -156,19 +156,19 @@ const ProjectsSection = () => {
         <div className="absolute inset-0 bg-[#0a192f]/95" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
             Featured Projects
           </h2>
-          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-lg">
+          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-base md:text-lg px-2">
             A collection of projects that showcase my expertise in full-stack development, cloud 
             architecture, and modern web technologies.
           </p>

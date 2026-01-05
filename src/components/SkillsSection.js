@@ -88,23 +88,23 @@ const SkillsSection = () => {
         <div className="absolute inset-0 bg-[#0a192f]/95" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
           Technical Skills
         </h2>
-        <p className="text-[#a8b2d1] max-w-2xl mx-auto text-lg">
+        <p className="text-[#a8b2d1] max-w-2xl mx-auto text-base md:text-lg px-2">
           Technologies and tools I work with
         </p>
-      </motion.div>
+        </motion.div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 max-w-6xl mx-auto">
         {skillCategories.map((category, index) => (
           <SkillCard key={category.title} category={category} index={index} />
         ))}

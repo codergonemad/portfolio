@@ -13,6 +13,7 @@ import hackerImage from '../media/hacker.avif';
 const PortfolioWebsite = () => {
   const [showGoToTop, setShowGoToTop] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const sections = [
     { id: 'home', label: 'Intro' },
@@ -20,8 +21,8 @@ const PortfolioWebsite = () => {
     { id: 'whatido', label: 'What I Do' },
     { id: 'skills', label: 'Skills' },
     { id: 'experience', label: 'Experience' },
-    { id: 'certifications', label: 'Certifications' },
     { id: 'work', label: 'Projects' },
+    { id: 'certifications', label: 'Certifications' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -85,8 +86,25 @@ const PortfolioWebsite = () => {
         `}</style>
   
   <header className="fixed w-full bg-transparent z-20">
-        <nav className="container mx-auto px-6 py-6 flex justify-end items-center">
-          <ul className="flex space-x-8">
+        <nav className="container mx-auto px-4 md:px-6 py-4 md:py-6 flex justify-end items-center">
+          
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-[#ccd6f6] p-2"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
+            </svg>
+          </button>
+
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex space-x-8">
             {sections.map((section) => (
               <li key={section.id}>
                 <a
@@ -105,8 +123,31 @@ const PortfolioWebsite = () => {
             ))}
           </ul>
         </nav>
+
+        {/* Mobile Navigation Menu */}
+        <div className={`md:hidden absolute top-full left-0 w-full bg-[#0a192f]/95 backdrop-blur-sm transition-all duration-300 ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+          <ul className="flex flex-col py-4">
+            {sections.map((section) => (
+              <li key={section.id}>
+                <a
+                  href={`#${section.id}`}
+                  className={`block px-6 py-3 text-sm hover:text-[#64ffda] hover:bg-[#112240] transition-colors duration-300 ${
+                    activeSection === section.id ? 'text-[#64ffda] bg-[#112240]' : 'text-[#ccd6f6]'
+                  }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(section.id);
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  {section.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       </header>
-      <nav id="dot-nav" className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
+      <nav id="dot-nav" className="hidden lg:block fixed right-8 top-1/2 transform -translate-y-1/2 z-50">
         <ul className="space-y-4">
           {sections.map((section) => (
             <li key={section.id} className="dot-container group">
@@ -148,9 +189,9 @@ const PortfolioWebsite = () => {
           </div>
           
           {/* Content */}
-          <div className="relative z-10 text-center">
-            <h1 className="text-6xl md:text-7xl font-bold mb-6 text-white">Saket Singh</h1>
-            <p className="text-xl md:text-2xl text-[#a8b2d1]">Full Stack GenAI Developer</p>
+          <div className="relative z-10 text-center px-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 text-white">Saket Singh</h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-[#a8b2d1]">Full Stack GenAI Developer</p>
           </div>
           
           {/* Learn More */}
@@ -184,20 +225,20 @@ const PortfolioWebsite = () => {
               <div className="absolute inset-0 bg-[#0a192f]/90" />
             </div>
             <div className="relative z-10 container mx-auto px-6">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">About Me</h2>
-              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-12 text-lg">Get to know me better</p>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center text-white">About Me</h2>
+              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-8 md:mb-12 text-base md:text-lg px-2">Get to know me better</p>
               <div className="flex flex-col md:flex-row items-center max-w-5xl mx-auto">
                 <div className="md:w-1/3 mb-8 md:mb-0">
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 rounded-2xl opacity-30 group-hover:opacity-50 blur transition duration-500"></div>
-                    <div className="relative w-64 h-64 rounded-2xl bg-gradient-to-br from-[#64ffda]/20 to-[#0a192f] p-1 mx-auto overflow-hidden">
+                    <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 rounded-2xl bg-gradient-to-br from-[#64ffda]/20 to-[#0a192f] p-1 mx-auto overflow-hidden">
                       <img src={hackerImage} alt="Developer" className="rounded-2xl w-full h-full object-cover" />
                     </div>
                   </div>
                 </div>
-                <div className="md:w-2/3 md:pl-12">
-                  <p className="mb-4 text-[#b4bfd4] leading-relaxed text-base md:text-lg">I'm a Full Stack GenAI Engineer with 2+ years of experience designing and deploying production-grade AI systems, including RAG pipelines, AI agents, and intelligent automation platforms. My expertise spans across various technologies including Python, Java, JavaScript, and multiple frontend and backend frameworks.</p>
-                  <p className="text-[#b4bfd4] leading-relaxed text-base md:text-lg">I'm passionate about leveraging LangChain, LangGraph, Azure OpenAI, and cloud-native Linux environments to deliver scalable enterprise AI solutions.</p>
+                <div className="md:w-2/3 md:pl-12 text-center md:text-left">
+                  <p className="mb-4 text-[#b4bfd4] leading-relaxed text-sm sm:text-base md:text-lg">I'm a Full Stack GenAI Engineer with 2+ years of experience designing and deploying production-grade AI systems, including RAG pipelines, AI agents, and intelligent automation platforms. My expertise spans across various technologies including Python, Java, JavaScript, and multiple frontend and backend frameworks.</p>
+                  <p className="text-[#b4bfd4] leading-relaxed text-sm sm:text-base md:text-lg">I'm passionate about leveraging LangChain, LangGraph, Azure OpenAI, and cloud-native Linux environments to deliver scalable enterprise AI solutions.</p>
                 </div>
               </div>
             </div>
@@ -217,12 +258,12 @@ const PortfolioWebsite = () => {
             >
               <div className="absolute inset-0 bg-[#0a192f]/90" />
             </div>
-            <div className="relative z-10 container mx-auto px-6">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">What I Do</h2>
-              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-12 text-lg">
+            <div className="relative z-10 container mx-auto px-4 md:px-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-center text-white">What I Do</h2>
+              <p className="text-[#a8b2d1] text-center max-w-2xl mx-auto mb-8 md:mb-12 text-base md:text-lg px-2">
                 I specialize in building intelligent systems and full-stack applications that solve real-world problems.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 max-w-6xl mx-auto">
                 {/* AI/ML Card */}
                 <div className="group relative overflow-hidden bg-[#112240] rounded-2xl border border-[#1d3a5f] hover:border-[#64ffda]/50 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[#64ffda]/10">
                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#64ffda] to-[#64ffda]/50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
@@ -321,53 +362,53 @@ const PortfolioWebsite = () => {
             >
               <div className="absolute inset-0 bg-[#0a192f]/90" />
             </div>
-            <div className="relative z-10 container mx-auto px-6">
+            <div className="relative z-10 container mx-auto px-4 md:px-6">
               <div className="max-w-3xl mx-auto text-center">
-                <p className="text-[#64ffda] font-mono mb-4">What's Next?</p>
-                <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">Get In Touch</h2>
-                <p className="text-[#8892b0] mb-12 text-lg leading-relaxed">
+                <p className="text-[#64ffda] font-mono mb-2 md:mb-4 text-sm md:text-base">What's Next?</p>
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 md:mb-6 text-white">Get In Touch</h2>
+                <p className="text-[#8892b0] mb-8 md:mb-12 text-base md:text-lg leading-relaxed px-2">
                   I'm currently open to new opportunities and exciting projects. Whether you want to discuss a potential collaboration, have a question, or just want to say hello — my inbox is always open!
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 md:mb-12">
                   <a 
                     href="mailto:sakets542@gmail.com" 
-                    className="group inline-flex items-center gap-3 bg-transparent border-2 border-[#64ffda] text-[#64ffda] px-8 py-4 rounded-lg font-semibold hover:bg-[#64ffda]/10 transition-all duration-300"
+                    className="group inline-flex items-center gap-3 bg-transparent border-2 border-[#64ffda] text-[#64ffda] px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold hover:bg-[#64ffda]/10 transition-all duration-300 text-sm md:text-base"
                   >
-                    <Mail size={20} className="group-hover:animate-bounce" />
+                    <Mail size={18} className="group-hover:animate-bounce" />
                     Say Hello
                   </a>
                   <a 
                     href="tel:+918303451036" 
-                    className="group inline-flex items-center gap-3 text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300"
+                    className="group inline-flex items-center gap-3 text-[#8892b0] hover:text-[#64ffda] transition-colors duration-300 text-sm md:text-base"
                   >
-                    <span className="text-lg">📞</span>
+                    <span className="text-base md:text-lg">📞</span>
                     +91 8303451036
                   </a>
                 </div>
 
-                <div className="flex justify-center gap-6">
+                <div className="flex justify-center gap-4 md:gap-6">
                   <a 
                     href="https://github.com/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
                   >
-                    <FaGithub size={22} />
+                    <FaGithub size={20} />
                   </a>
                   <a 
                     href="https://linkedin.com/in/" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
                   >
-                    <Linkedin size={22} />
+                    <Linkedin size={20} />
                   </a>
                   <a 
                     href="mailto:sakets542@gmail.com"
-                    className="w-12 h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-[#1d3a5f] flex items-center justify-center text-[#8892b0] hover:text-[#64ffda] hover:border-[#64ffda] transition-all duration-300 hover:-translate-y-1"
                   >
-                    <Mail size={22} />
+                    <Mail size={20} />
                   </a>
                 </div>
               </div>

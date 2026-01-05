@@ -47,11 +47,11 @@ const CertificationCard = ({ cert, index }) => (
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.4, delay: index * 0.1 }}
-    className="group bg-[#112240]/50 rounded-xl p-6 border border-[#1d3a5f] hover:border-[#64ffda]/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer block"
+    className="group bg-[#112240]/50 rounded-xl p-4 md:p-6 border border-[#1d3a5f] hover:border-[#64ffda]/30 transition-all duration-300 hover:-translate-y-1 cursor-pointer block"
   >
-    <div className="flex items-start gap-4">
+    <div className="flex items-start gap-3 md:gap-4">
       <div 
-        className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
+        className="w-10 h-10 md:w-14 md:h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110"
         style={{ backgroundColor: `${cert.color}20` }}
       >
         <cert.icon className="text-2xl" style={{ color: cert.color }} />
@@ -92,23 +92,23 @@ const CertificationsSection = () => {
         <div className="absolute inset-0 bg-[#0a192f]/90" />
       </div>
 
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-10 container mx-auto px-4 md:px-6">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-white">
             Certifications
           </h2>
-          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-lg">
+          <p className="text-[#a8b2d1] max-w-2xl mx-auto text-base md:text-lg px-2">
             Professional certifications and courses that validate my expertise
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
           {certificationsData.map((cert, index) => (
             <CertificationCard key={cert.id} cert={cert} index={index} />
           ))}
